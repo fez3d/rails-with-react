@@ -1,0 +1,5 @@
+export const ADD_ARTICLE = 'ADD_ARTICLE';
+export const REMOVE_ARTICLE = 'REMOVE_ARTICLE';
+export const ALL_ARTICLES = 'ALL_ARTICLES';
+export const INFO_ARTICLES = 'INFO_ARTICLES';
+export const EDIT_ARTICLES = 'EDIT_ARTICLES';
