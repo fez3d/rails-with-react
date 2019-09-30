@@ -4,9 +4,9 @@ import Home from './Home';
 import Menu from './Menu';
 import Routes from './Routes';
 import {HashRouter as Router} from 'react-router-dom';
-import configureStore from '../configureStore'
+import createStore from '../src/store/store'
 
-const store = configureStore()
+const store = createStore
 
 class App extends Component {
   render() {
