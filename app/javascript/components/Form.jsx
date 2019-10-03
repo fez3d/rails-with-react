@@ -30,7 +30,7 @@ function Form(props) {
           <textarea name="content" rows="5" value={props.info.postContent} onChange={props.info.handleChange} className="form-control" />
         </div>
         <div className="btn-group">
-          <button type="submit" className="btn btn-dark">{props.info.button}</button>
+          <button type="submit" onClick={props.info.handleOnClick(props.info.postTitle, props.info.postContent )} className="btn btn-dark">{props.info.button}</button>
           <button type="button" onClick={props.info.handleCancel} className="btn btn-secondary">Cancel</button>
           <Button>I am a Button</Button>
         </div>

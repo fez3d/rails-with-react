@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import {loadArticles} from "../../src/actions/actions"
 
 class ArticleList extends Component {
   constructor() {
     super();
-    this.state = { articles: [] };
   }
 
   componentDidMount() {
-    fetch('api/articles')
-      .then(response => response.json())
-      .then(data => {
-        this.setState({articles: data});
-      })
-      .catch(error => console.log('error', error));
+    this.props.listArticles(); 
   }
-  render() {
+  
+  render() { 
     return (
       <div>
-        {this.state.articles.map((article) => {
+        {this.props.articles.map((article) => {          
           return(
             <div key={article.id}>
               <h2><Link to={`/articles/${article.id}`}>{article.title}</Link></h2>
@@ -33,4 +30,16 @@ class ArticleList extends Component {
   }
 }
 
-export default ArticleList;
+function mapStateToProps(state) {
+  return {
+    articles: state.articles
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    listArticles: () => dispatch(loadArticles())
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ArticleList);

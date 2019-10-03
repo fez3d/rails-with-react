@@ -3,29 +3,41 @@ import {
   REMOVE_ARTICLE,
   ALL_ARTICLES,
   EDIT_ARTICLE,
-  INFO_ARTICLE
+  INFO_ARTICLE,
+  LOAD_ARTICLES_SUCCESS
 } from "../../constants/actionTypes";
 
-function rootReducer(state = [], action) {
+function articleReducer(state = [], action) {
+  console.log("articleReducer, articles");
   switch (action.type) {
     case ADD_ARTICLE:
-      return {};
+      return [...state, { title: action.title, content: action.content }];
 
     case REMOVE_ARTICLE:
-      return {};
+      return {
+
+      };
 
     case ALL_ARTICLES:
-      return {};
+      return {
+
+      };
 
     case EDIT_ARTICLE:
-      return {};
+      return {
+
+      };
 
     case INFO_ARTICLE:
-      return {};
+      console.log("info_Article, en articles");
+      return [...state, {article: action.payload}]
+
+    case LOAD_ARTICLES_SUCCESS:
+        return action.articles;
 
     default:
       return state;
   }
 }
 
-export default rootReducer;
+export default articleReducer;

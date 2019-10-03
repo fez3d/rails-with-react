@@ -8,16 +8,15 @@ class ArticleEdit extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
-    console.log("estas en form 2")
   }
 
   componentDidMount() {
-    fetch(`api/articles/${this.props.match.params.id}`)
+    /*fetch(`api/articles/${this.props.match.params.id}`)
       .then(response => response.json())  
       .then(data => {
           // Acá asignar el data al state
           this.setState(data);
-      });
+      });*/
   }
 
   handleSubmit(event) {

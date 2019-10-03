@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import {infoArticle} from "../../src/actions/actions"
 
 class ArticleInfo extends Component {
   constructor() {
@@ -9,21 +11,12 @@ class ArticleInfo extends Component {
   }
 
   componentDidMount() {
-    fetch(`api/articles/${this.props.match.params.id}`)
-      .then(response => response.json())  
-      .then(data => {
-          // Acá asignar el data al state
-          this.setState({article: data});
-      })
-      .catch(error => console.log('error', error)
-    );
+    console.log("componentWillMount, articleInfo");
+    this.props.showInfo(1);
   }
 
   handleDelete() {
-    // Acá poner la petición a eliminar y si es exitoso redirigir a ver todos los artículos. Para eliminar es DELETE
-    fetch(`api/articles/${this.props.match.params.id}`, {method: 'DELETE'})
-      .then(this.props.history.push(`/articles`)
-    );
+    
   }
 
   render() {
@@ -42,4 +35,18 @@ class ArticleInfo extends Component {
   }
 }
 
-export default ArticleInfo;
+function mapStateToProps(state) {
+  console.log("mapStateToProps, articleInfo");
+  return {
+    articles: state.article
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  console.log("mapDispatchToProps, articlInfo");
+  return {
+    showInfo: (id) => dispatch(infoArticle(id))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ArticleInfo);
