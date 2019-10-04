@@ -14,7 +14,7 @@ class ArticleAdd extends Component {
   }
 
   handleSubmit(event) {
-    /*event.preventDefault();
+    event.preventDefault();
     fetch("api/articles", {
       method: "POST",
       body: JSON.stringify(this.state),
@@ -24,7 +24,7 @@ class ArticleAdd extends Component {
       .then(data => {
         this.props.history.push(`/articles/${data.id}`);
       })
-      .catch(error => console.log("error", error));*/
+      .catch(error => console.log("error", error));
   }
 
   handleChange(event) {

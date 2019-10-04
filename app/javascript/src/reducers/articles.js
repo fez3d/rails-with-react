@@ -4,8 +4,9 @@ import {
   ALL_ARTICLES,
   EDIT_ARTICLE,
   INFO_ARTICLE,
-  LOAD_ARTICLES_SUCCESS
-} from "../../constants/actionTypes";
+  LOAD_ARTICLES_SUCCESS,
+  LOAD_ARTICLE_SUCCESS
+} from "../actions/actionTypes";
 
 function articleReducer(state = [], action) {
   console.log("articleReducer, articles");
@@ -34,6 +35,9 @@ function articleReducer(state = [], action) {
 
     case LOAD_ARTICLES_SUCCESS:
         return action.articles;
+
+    case LOAD_ARTICLE_SUCCESS:
+        return [action.article];
 
     default:
       return state;

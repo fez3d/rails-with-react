@@ -4,9 +4,10 @@ import {
   ALL_ARTICLES,
   EDIT_ARTICLE,
   INFO_ARTICLE,
-  LOAD_ARTICLES_SUCCESS
-} from "../../constants/actionTypes";
-import ArticleApi from "../api/ArticleApi";
+  LOAD_ARTICLES_SUCCESS,
+  LOAD_ARTICLE_SUCCESS
+} from "./actionTypes";
+import ArticleApi from "../api/ArticleApi.js";
 
 export function addArticle(title, content) {
   return {
@@ -17,10 +18,20 @@ export function addArticle(title, content) {
 }
 
 export function removeArticle(id) {
-  return {
-    type: REMOVE_ARTICLE,
-    id: id
+  return function(dispatch) {
+    return ArticleApi.deleteArticle(id)
+      .then(() => {
+        dispatch(removeArticleSuccess());
+      })
+      .catch(error => {
+        throw error;
+      });
   };
+}
+
+function removeArticleSuccess(article) {
+  console.log("actions, loadArticlesSuccess");
+  return { type: REMOVE_ARTICLE };
 }
 
 export function allArticles() {
@@ -37,34 +48,23 @@ export function editArticle(id) {
 }
 
 export function infoArticle(id) {
-  console.log("infoArticle, actions");
   return function(dispatch) {
     return ArticleApi.getArticle(id)
       .then(article => {
-        dispatch(loadArticlesSuccess(article));
+        dispatch(loadArticleSuccess(article));
       })
       .catch(error => {
         throw error;
       });
   };
+}
 
-
-
-
-
-
-
-
-
-
-  /*return {
-    type: INFO_ARTICLE,
-    payload: response
-  };*/
+function loadArticleSuccess(article) {
+  console.log("actions, loadArticlesSuccess");
+  return { type: LOAD_ARTICLE_SUCCESS, article };
 }
 
 export function loadArticles() {
-  console.log("actions, loadArticles");
   return function(dispatch) {
     return ArticleApi.getAllArticles()
       .then(articles => {
